@@ -12,3 +12,4 @@ dist
 
 *.iml
 idea/
+.env

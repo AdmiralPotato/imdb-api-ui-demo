@@ -1,58 +1,39 @@
 <template>
   <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        imdb-api-ui-demo
-      </h1>
-      <h2 class="subtitle">
-        Employers want examples of my ability to work with an API - so here it is
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
-    </div>
+    <h1>!!!Development In Progress!!!</h1>
+
+    <p>Something is odd with the results from <code>http://www.theimdbapi.org/</code> - It's cutting the last character off a number of names.</p>
+
+    <h3>Important people:</h3>
+    <ul>
+      <li v-for="person in people">
+        <nuxt-link :to="'/actor/' + person.person_id">{{person.title}}</nuxt-link>
+      </li>
+    </ul>
   </section>
 </template>
-
 <script>
-import Logo from '~/components/Logo.vue'
+  import axios from 'axios'
+  let popularPeopleIdList = [
+    'nm0001772',
+    'nm0000653',
+    'nm0000408',
+    'nm0000996',
+    'nm0000642',
+    'nm0000373',
+    'nm0000533'
+  ]
+  export default {
+    asyncData () {
+      let promiseList = popularPeopleIdList.map((personId) => {
+        return axios.get(`http://www.theimdbapi.org/api/person?person_id=${personId}`)
+      })
 
-export default {
-  components: {
-    Logo
+      return Promise.all(promiseList)
+        .then((responseList) => {
+          let people = responseList.map((response) => { return response.data })
+          return { people: people }
+        })
+    }
   }
-}
 </script>
-
-<style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

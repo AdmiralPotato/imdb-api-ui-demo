@@ -1,7 +1,9 @@
+require('dotenv').config();
 module.exports = {
   /*
   ** Headers of the page
   */
+  port: process.env.PORT || 3000,
   head: {
     title: 'imdb-api-ui-demo',
     meta: [
@@ -10,7 +12,17 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Employers want examples of my ability to work with an API - so here it is' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: "stylesheet",
+        href: "/styles.css"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css",
+        integrity: "sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ",
+        crossorigin: "anonymous"
+      }
     ]
   },
   /*
