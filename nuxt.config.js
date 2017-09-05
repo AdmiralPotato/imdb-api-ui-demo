@@ -59,6 +59,7 @@ module.exports = {
     // Will register file from project api directory to handle /api/* requires
     { path: '/api', handler: '~/api/start.js' },
     { path: '/api/person', handler: '~/api/person.js' },
+    { path: '/api/movie', handler: '~/api/movie.js' },
     { path: '/api', handler: '~/api/error.js' }
   ]
 }
