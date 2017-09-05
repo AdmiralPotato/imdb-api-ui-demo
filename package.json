@@ -24,7 +24,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "dotenv": "^4.0.0",
-    "nuxt": "^1.0.0-rc8"
+    "nuxt": "1.0.0-rc8"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

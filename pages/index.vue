@@ -24,9 +24,11 @@
     'nm0000533'
   ]
   export default {
-    asyncData () {
+    asyncData (context) {
+      let prefix = context.isServer ? 'http://' + context.req.headers.host : ''
+
       let promiseList = popularPeopleIdList.map((personId) => {
-        return axios.get(`http://www.theimdbapi.org/api/person?person_id=${personId}`)
+        return axios.get(`${prefix}/api/person/${personId}`)
       })
 
       return Promise.all(promiseList)

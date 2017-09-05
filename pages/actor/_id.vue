@@ -11,10 +11,10 @@
 import axios from 'axios'
 
 export default {
-  asyncData ({ params }) {
-    return axios.get(`http://www.theimdbapi.org/api/person?person_id=${params.id}`)
+  asyncData (context) {
+    let prefix = context.isServer ? 'http://' + context.req.headers.host : ''
+    return axios.get(`${prefix}/api/person/${context.params.id}`)
       .then((res) => {
-        console.log(res.data)
         return { data: res.data }
       })
   }
